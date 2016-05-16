@@ -15,7 +15,7 @@
     "node": "5.5.0"
   },
   "scripts": {
-    "start": "babel-node src/index.js",
+    "start": "babel-node run.js",
     "lint": "npm run lint:eslint",
     "lint:eslint": "eslint ./",
     "lint:eslint:fix": "eslint --fix ./",

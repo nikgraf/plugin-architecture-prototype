@@ -1,4 +1,11 @@
-# Plugin System
+# Plugin System Prototype
+
+## Install & Run
+
+```
+npm install
+npm run
+```
 
 ## Lessons Learned
 

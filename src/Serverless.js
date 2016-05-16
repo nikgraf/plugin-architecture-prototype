@@ -24,7 +24,8 @@ export default class Serverless {
     console.log(`\ncommand: ${command}`);
 
     const events = getEvents(command.split(' '), this.commands);
-    console.log('events', events);
+    console.log('events:');
+    console.log(events);
 
     // collect all relevant hooks
     let hooks = [];
@@ -42,7 +43,7 @@ export default class Serverless {
 
     // run all relevant hooks one after another
     // Note: this code needs to be a bit more complex to support async hooks using Promises
-    console.log('hooks', hooks);
+    console.log('hooks:');
     hooks.forEach((hook) => {
       hook();
     });

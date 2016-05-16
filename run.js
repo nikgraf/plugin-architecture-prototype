@@ -1,8 +1,8 @@
-import Serverless from './Serverless';
+import Serverless from './src/Serverless';
 
-import DeployPlugin from './plugins/Deploy';
-import MyCustomDeployPlugin from './plugins/MyCustomDeploy';
-import ProjectInitializePlugin from './plugins/ProjectInitialize';
+import DeployPlugin from './src/plugins/Deploy';
+import MyCustomDeployPlugin from './src/plugins/MyCustomDeploy';
+import ProjectInitializePlugin from './src/plugins/ProjectInitialize';
 
 const plugins = [ProjectInitializePlugin, DeployPlugin, MyCustomDeployPlugin];
 

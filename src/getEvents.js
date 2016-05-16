@@ -10,7 +10,13 @@ const getEvents = (command, availableCommands, prefix = '') => {
   if (has(availableCommands, commandPart)) {
     const commandDetails = availableCommands[commandPart];
     if (command.length === 1) {
-      return commandDetails.lifeCycleEvents.map((event) => `${prefix}${commandPart}:${event}`);
+      const events = [];
+      commandDetails.lifeCycleEvents.forEach((event) => {
+        events.push(`${prefix}${commandPart}:${event}Pre`);
+        events.push(`${prefix}${commandPart}:${event}`);
+        events.push(`${prefix}${commandPart}:${event}Post`);
+      });
+      return events;
     }
     if (has(commandDetails, 'commands')) {
       return getEvents(command.slice(1, command.length), commandDetails.commands, `${commandPart}:`);
