@@ -1,28 +1,14 @@
 /* eslint-disable no-console */
 
 import forEach from 'lodash/forEach';
-import has from 'lodash/has';
-
-const getEvents = (command, availableCommands) => {
-  if (has(availableCommands, command[0])) {
-    const commandDetails = availableCommands[command[0]];
-    if (command.length === 1) {
-      return commandDetails.lifeCycleEvents;
-    }
-    if (has(commandDetails, 'commands')) {
-      return getEvents(command.slice(1, command.length), commandDetails.commands);
-    }
-  }
-
-  return [];
-};
+import getEvents from './getEvents';
 
 export default class Serverless {
 
   constructor(config) {
     this.config = config;
-    const plugins = config.plugins.map((Plugin) => new Plugin(config));
-    const commandsList = plugins.map((plugin) => plugin.commands);
+    this.plugins = config.plugins.map((Plugin) => new Plugin(config));
+    const commandsList = this.plugins.map((plugin) => plugin.commands);
 
     // Note: here duplicates are overwritten by the last one
     this.commands = {};
@@ -35,7 +21,26 @@ export default class Serverless {
 
   runCommand(command) {
     console.log(`\ncommand: ${command}`);
+
     const events = getEvents(command.split(' '), this.commands);
     console.log('events', events);
+
+    let hooks = [];
+    events.forEach((event) => {
+      const hooksForEvent = [];
+      this.plugins.forEach((plugin) => {
+        forEach(plugin.hooks, (hook, hookKey) => {
+          if (hookKey === event) {
+            hooksForEvent.push(hook);
+          }
+        });
+      });
+      hooks = hooks.concat(hooksForEvent);
+    });
+
+    console.log('hooks', hooks);
+    hooks.forEach((hook) => {
+      hook();
+    });
   }
 }

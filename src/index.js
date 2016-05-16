@@ -1,9 +1,10 @@
 import Serverless from './Serverless';
 
 import DeployPlugin from './plugins/Deploy';
+import MyCustomDeployPlugin from './plugins/MyCustomDeploy';
 import ProjectInitializePlugin from './plugins/ProjectInitialize';
 
-const plugins = [ProjectInitializePlugin, DeployPlugin];
+const plugins = [ProjectInitializePlugin, DeployPlugin, MyCustomDeployPlugin];
 
 const config = {
   plugins,
