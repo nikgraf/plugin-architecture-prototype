@@ -10,7 +10,8 @@ export default class Serverless {
     this.plugins = config.plugins.map((Plugin) => new Plugin(config));
     const commandsList = this.plugins.map((plugin) => plugin.commands);
 
-    // Note: here duplicates are overwritten by the last one
+    // Collect all base level commands.
+    // Note: here duplicates are overwritten by the last one and that's maybe not the desired behaviour
     this.commands = {};
     forEach(commandsList, (commands) => {
       forEach(commands, (commandDetails, command) => {
@@ -25,6 +26,7 @@ export default class Serverless {
     const events = getEvents(command.split(' '), this.commands);
     console.log('events', events);
 
+    // collect all relevant hooks
     let hooks = [];
     events.forEach((event) => {
       const hooksForEvent = [];
@@ -38,6 +40,8 @@ export default class Serverless {
       hooks = hooks.concat(hooksForEvent);
     });
 
+    // run all relevant hooks one after another
+    // Note: this code needs to be a bit more complex to support async hooks using Promises
     console.log('hooks', hooks);
     hooks.forEach((hook) => {
       hook();
