@@ -1,13 +1,5 @@
 'use strict';
 
-import chai from 'chai';
-import dirtyChai from 'dirty-chai';
-
-process.env.NODE_ENV = 'test';
-
-chai.use(dirtyChai);
-
-
 import ClientDeploy from '../index';
 import { expect } from 'chai';
 
@@ -52,7 +44,7 @@ describe('ClientDeploy', () => {
     });
   });
 
-  describe('#uploadToS3', () => {
+  describe('#uploadToS3()', () => {
     it('should upload the files to S3', () => {
       const result = clientDeploy.uploadToS3();
       expect(result).to.equal(true);

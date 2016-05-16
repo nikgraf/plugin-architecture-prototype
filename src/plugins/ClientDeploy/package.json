@@ -5,7 +5,7 @@
   "keywords": "",
   "license": "MIT",
   "scripts": {
-    "test": "node_modules/.bin/mocha --compilers js:babel-core/register --require ./tests/testHelper.js ./tests/tests.js"
+    "test": "node_modules/.bin/mocha --compilers js:babel-core/register --require ./tests/testHelper.js ./tests/ClientDeploy.js"
   },
   "dependencies": {
   },
