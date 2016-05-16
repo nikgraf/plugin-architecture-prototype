@@ -31,22 +31,27 @@ export default class ClientDeployPlugin {
 
   compileAssets = () => {
     console.log('Hook: Precompiling assets');
+    return true;
   };
 
   buildClient = () => {
     console.log('Hook: Building client');
+    return true;
   };
 
   zipFiles = () => {
     console.log('Hook: Zipping up files with gzip');
+    return true;
   };
 
   uploadToS3 = () => {
     console.log('Hook: Upload stuff to the S3 bucket');
+    return true;
   };
 
   cleanUp = () => {
     console.log('Hook: Cleaning up stuff');
+    return true;
   };
 
 }
