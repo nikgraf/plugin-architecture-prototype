@@ -19,7 +19,7 @@
     "lint": "npm run lint:eslint",
     "lint:eslint": "eslint ./",
     "lint:eslint:fix": "eslint --fix ./",
-    "test": "node_modules/.bin/mocha --compilers js:babel-core/register --require testHelper.js client/**/__test__/*.js plugin/**/__test__/*.js utils/**/__test__/*.js",
+    "test": "node_modules/.bin/mocha --compilers js:babel-core/register --require testHelper.js tests/all.js",
     "test:watch": "npm test -- --watch"
   },
   "dependencies": {
