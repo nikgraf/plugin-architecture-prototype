@@ -23,3 +23,7 @@ Another benefit here is there is no need to camelCase the events.
 
 It's an interesting concept to combine certain setups that can be included e.g.
 deploy to Lamba function x, y & create one resource.
+
+## Should events of commands also run in subcommands?
+
+I'm not sure. Here we probably best rely on Eslam's & Austin's experience.
